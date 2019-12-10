@@ -339,7 +339,7 @@ class AsyncTransformer
     public function preprocess():Expr
     {
         // prepare a temporary fn expr so it can be typed
-        var eFunction = EFunction(name,
+        var eFunction = EFunction(FNamed(name, false),
         {
             args: fn.args,
             ret: fn.ret,
@@ -502,7 +502,7 @@ class AsyncTransformer
             };
             
             codes = [];
-            codes.push({ expr: EFunction("__iterator", it), pos: fn.expr.pos });
+            codes.push({ expr: EFunction(FNamed("__iterator", false), it), pos: fn.expr.pos });
         }
         
         
@@ -1117,7 +1117,7 @@ class AsyncTransformer
                     }
                 }
                 
-            case EFor({ expr: EIn(eVar, eIter) }, eBody) if (containsYield(e)):
+            case EFor({ expr: EBinop(OpIn, eVar, eIter) }, eBody) if (containsYield(e)):
                 
                 if (containsYield(eVar)) eVar = recurse(eVar);
                 if (containsYield(eIter)) eIter = recurse(eIter);
@@ -1362,7 +1362,7 @@ class AsyncTransformer
                     if (containsYield(fields[i].expr))
                         fields[i].expr = recurse(fields[i].expr);
                 
-                var gets:Array<{ field:String, expr:Expr }> = [];
+                var gets:Array<ObjectField> = [];
                 var codes:Array<Expr> = [];
                 
                 for (i in 0...fields.length)
@@ -1522,7 +1522,7 @@ class AsyncTransformer
                 expr;
                 
             // @meta precedence changed from 3.2 to 3.3!
-            #if (haxe_ver == 3.3)
+            #if (haxe_ver >= 3.3)
             case EMeta({name: "set"},
                 { expr: EBinop(OpAssign, { expr: EConst(CIdent(name)) }, rhs) }):
                 

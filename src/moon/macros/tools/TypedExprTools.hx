@@ -34,6 +34,15 @@ class TypedExprTools
         }
     }
     
+    public static function tconst(c:TypedExpr):Constant
+    {
+        return switch(c.expr)
+        {
+            case TConst(i): i.const();
+            case _: throw "Unexpected";
+        }
+    }
+    
     public static function toComplexType(m:ModuleType):ComplexType
     {
         return switch(m)
@@ -211,7 +220,7 @@ class TypedExprTools
                         args: [for (a in fn.args)
                                 a.value == null ?
                                     { name: id(a.v, te.pos), type: a.v.t.toComplexType() }:
-                                    { name: id(a.v, te.pos), type: a.v.t.toComplexType(), opt: true, value: EConst(a.value.const()).pos(te.pos) }],
+                                    { name: id(a.v, te.pos), type: a.v.t.toComplexType(), opt: true, value: EConst(a.value.tconst()).pos(te.pos) }],
                         ret: fn.t.toComplexType(),
                         expr: map(fn.expr),
                         // params?
@@ -226,7 +235,7 @@ class TypedExprTools
                     
                 case TFor(v, e1, e2):
                     identifiers.set(v.id, v);
-                    EFor(EIn(EConst(CIdent(id(v, te.pos))).pos(e1.pos), map(e1)).pos(e1.pos), map(e2)).pos(te.pos);
+                    EFor(EBinop(OpIn, EConst(CIdent(id(v, te.pos))).pos(e1.pos), map(e1)).pos(e1.pos), map(e2)).pos(te.pos);
                     
                 case TIf(ec, et, ef):
                     EIf(map(ec), map(et), map(ef)).pos(te.pos);

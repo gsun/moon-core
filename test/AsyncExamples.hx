@@ -27,15 +27,15 @@ class AsyncExamples
     
     public static function main()
     {
-        //simpleExample();
-        //permutationsExample();
-        //nestedExample();
-        //fibonacciExample();
-        //sendExample();
-        //anotherSendExample();
-        //fiberExample();
-        //fiberFutureExample();
-        //fiberDurationExample();
+        simpleExample();
+        permutationsExample();
+        nestedExample();
+        fibonacciExample();
+        sendExample();
+        anotherSendExample();
+        fiberExample();
+        fiberFutureExample();
+        fiberDurationExample();
     }
     
     // aaa => TField(TTypeExpr(TClassDecl(AsyncExamples)), FStatic(AsyncExamples, aaa))

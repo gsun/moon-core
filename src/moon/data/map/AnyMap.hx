@@ -105,6 +105,24 @@ private class AnyMapType<K, V> implements IMap<K,V>
         return "{" + [for (k in mapV.keys()) mapK.get(k) + " => " + mapV.get(k)].join(", ") + "}";
     }
     
+    public function clear()
+    {
+        mapK.clear();
+        mapV.clear();
+    }
+    
+    public function copy():AnyMapType<K, V>
+    {
+        var copied = new AnyMapType<K, V>(toKey);
+        for (key in keys())
+            copied.set(key, get(key));
+        return copied;
+    }
+    
+    @:runtime public inline function keyValueIterator():KeyValueIterator<K, V> {
+        return new haxe.iterators.MapKeyValueIterator(this);
+    }
+    
     /*==================================================
         Extra
     ==================================================*/

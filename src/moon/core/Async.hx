@@ -39,7 +39,7 @@ class Async
     {
         return switch (expr.expr)
         {
-            case EFunction(name, fn):
+            case EFunction(FNamed(name, _), fn):
                 var ab = new AsyncTransformer(name, fn, expr.pos);
                 fn.expr = ab.build();
                 return expr;

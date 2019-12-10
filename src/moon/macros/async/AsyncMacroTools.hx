@@ -91,7 +91,7 @@ class AsyncFunctionTools
         var tmp = fn.expr;
         
         fn.expr = e;
-        var fnexpr:Expr = { expr: EFunction(name, fn), pos: e.pos };
+        var fnexpr:Expr = { expr: EFunction(FNamed(name, false), fn), pos: e.pos };
         var str = fnexpr.toString();
         
         fn.expr = tmp;

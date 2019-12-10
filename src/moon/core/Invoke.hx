@@ -1,11 +1,8 @@
 package moon.core;
 
-#if neko
-    import neko.vm.Mutex;
-    import neko.vm.Thread;
-#elseif cpp
-    import cpp.vm.Mutex;
-    import cpp.vm.Thread;
+#if (neko || cpp)
+    import sys.thread.Mutex;
+    import sys.thread.Thread;
 #else
     import haxe.Timer;
 #end
