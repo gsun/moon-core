@@ -124,24 +124,24 @@ class AsyncBuilder
     {
         return switch (e.expr)
         {
-            case EMeta({ name: "async", params: params }, { expr: EFunction(name, fn), pos: pos }):
+            case EMeta({ name: "async", params: params }, { expr: EFunction(FNamed(name, _), fn), pos: pos }):
                 
                 //{ expr: EFunction(name, make(name, fn, pos)), pos: pos };
                 
                 // inner one first
                 fn.expr = transform(fn.expr);
-                var expr = { expr: EFunction(name, fn), pos: e.pos };
+                var expr = { expr: EFunction(FNamed(name, false), fn), pos: e.pos };
                 return macro moon.core.Async.async($expr);
                 
             // no meta, but contains @yield, so imply its a generator also
-            case EFunction(name, fn) if (fn.isGenerator()):
+            case EFunction(FNamed(name, _), fn) if (fn.isGenerator()):
                 
                 //{ expr: EFunction(name, make(name, fn, e.pos)), pos: e.pos };
                 // function name() { expr } ==> moon.core.Async.async(function name() { expr });
                 
                 // inner one first
                 fn.expr = transform(fn.expr);
-                var expr = { expr: EFunction(name, fn), pos: e.pos };
+                var expr = { expr: EFunction(FNamed(name, false), fn), pos: e.pos };
                 return macro moon.core.Async.async($expr);
                 
             case _:

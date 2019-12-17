@@ -162,8 +162,8 @@ import moon.numbers.random.algo.NativeRandom;
 
 typedef TRandom =
 {
-    @:noCompletion private var _gauss:Float;
-    @:noCompletion private var _hasGauss:Bool;
+    @:noCompletion public var _gauss:Float;
+    @:noCompletion public var _hasGauss:Bool;
     
     /**
      * Generates 32 bits of randomness.

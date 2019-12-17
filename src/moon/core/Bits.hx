@@ -302,7 +302,7 @@ class BitsForwardIterator
     
     public inline function hasNext():Bool
     {
-        return i < Bits.length;
+        return i < b.length;
     }
     
     public inline function next():Bool
@@ -319,7 +319,7 @@ class BitsReverseIterator
     public inline function new(bits:Bits)
     {
         this.b = bits;
-        this.i = Bits.length - 1;
+        this.i = bits.length - 1;
     }
     
     public inline function hasNext():Bool

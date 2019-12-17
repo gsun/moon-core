@@ -14,8 +14,8 @@ using moon.numbers.random.RandomTools;
  */
 class Arc4Random
 {
-    private var _gauss:Float = 0;
-    private var _hasGauss:Bool = false;
+    public var _gauss:Float = 0;
+    public var _hasGauss:Bool = false;
     public var seed(never, set):StringSeed;
     
     private var s:Bytes;
