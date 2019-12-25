@@ -381,7 +381,7 @@ class UnitsMacro
         {
             switch (f)
             {
-                case { access: [AInline, AStatic, APublic], kind: FVar(type, expr) }:
+                case { access: [APublic, AStatic, AInline], kind: FVar(type, expr) }:
                     
                     if (expr != null)
                     {
@@ -393,7 +393,7 @@ class UnitsMacro
                     
                 case _:
                     // ignore
-                    trace(f.access);
+                    // trace(f.access);
             }
         }
         
