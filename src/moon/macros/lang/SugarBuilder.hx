@@ -99,7 +99,7 @@ class SugarBuilder
             codes.push(macro var tmp);
             codes.push(makeFirstIf(cond, args, 0));
             
-            var x = macro $b{codes}; trace(x.toString());
+            var x = macro $b{codes}; //trace(x.toString());
             
             return macro $b{codes};
         }

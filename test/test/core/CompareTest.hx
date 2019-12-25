@@ -82,14 +82,14 @@ class CompareTest extends TestCase
         var arr3:Array<Dynamic> = arr1.copy();
         
         arr1.sort(Compare.map(o => o.room, Compare.string(Asc, CaseSensitive, true)));
-        
+/*        
         arr2.sort([a, b] => @notzero [
             CompareString.naturalAsc(a.street, b.street),
             CompareString.naturalAsc(a.room, b.room)
         ]);
-        
+*/        
         // same as above, but using sugar
-        /*arr2.sort(function(a, b)
+        arr2.sort(function(a, b)
         {
             // sort by street then by room
             // nonzero is a macro that expands to if-else statements
@@ -100,7 +100,7 @@ class CompareTest extends TestCase
                 CompareString.naturalAsc(a.street, b.street),
                 CompareString.naturalAsc(a.room, b.room)
             );
-        });*/
+        });
         
         assert.isDeepEqual([arr1, arr2],
         [
