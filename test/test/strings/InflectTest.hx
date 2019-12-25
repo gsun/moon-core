@@ -60,7 +60,7 @@ class InflectTest extends TestCase
         }
     }
     
-    /*public function testInflect()
+    public function testInflect()
     {
         var base =
         [
@@ -111,6 +111,6 @@ class InflectTest extends TestCase
         
         assert.isDeepEqual(camel, r_camel);
         assert.isDeepEqual(kebab, r_kebab);
-    }*/
+    }
 }
 

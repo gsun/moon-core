@@ -88,7 +88,7 @@ class UnitsMacro
         var units:Map<String, Float> = isBaseType ? getOwnUnits() : getUnits(refClass);
         
         // fallback when no abstract defined for a constant
-        var floatType:ComplexType = macro:StdTypes.Float;
+        var floatType:ComplexType = macro:Float;
         
         
         var ops:Array<Binop> = [OpAdd, OpSub, OpMult, OpDiv, OpMod];
